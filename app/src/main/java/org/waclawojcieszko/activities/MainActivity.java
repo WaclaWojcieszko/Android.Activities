@@ -1,5 +1,6 @@
 package org.waclawojcieszko.activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
@@ -65,6 +66,22 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         }).start();
+    }
+
+    public void dialogWindow3(View view){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setTitle("Informacja");
+        dialogBuilder.setMessage("Witamy w aplikacji");
+        dialogBuilder.setCancelable(false);
+        dialogBuilder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getBaseContext(), "Okienko zostało zamknięte", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
     }
 
     @Override
