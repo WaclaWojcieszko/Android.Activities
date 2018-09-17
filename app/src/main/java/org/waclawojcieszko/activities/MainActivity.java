@@ -19,18 +19,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void dialogWindow2(View v){
+    public void dialogWindow2(View v) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setIcon(R.mipmap.ic_launcher);
         progressDialog.setTitle("Pobieram dane...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK",
-            new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which){
-                    Toast.makeText(getBaseContext(),"Kliknięto OK", Toast.LENGTH_SHORT).show();
-                }
-            });
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getBaseContext(), "Kliknięto OK", Toast.LENGTH_SHORT).show();
+                    }
+                });
         progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Anuluj",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 1; i<=10; ++i){
+                for (int i = 1; i <= 10; ++i) {
                     try {
                         Thread.sleep(1500);
                         progressDialog.incrementProgressBy(10);
-                    } catch (InterruptedException e){
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
@@ -54,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void dialogWindow(View view){
+    public void dialogWindow(View view) {
         final ProgressDialog dialog = ProgressDialog.show(this, "Ralizuję zadanie", "Proszę czekać...");
         new Thread(new Runnable() {
             public void run() {
                 try {
                     Thread.sleep(3000);
-                    } catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 dialog.dismiss();
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void dialogWindow3(View view){
+    public void dialogWindow3(View view) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setTitle("Informacja");
         dialogBuilder.setMessage("Witamy w aplikacji");
@@ -84,38 +84,69 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    int lvl = 0;
+
+    public void dialogWindow4(View view) {
+        final CharSequence[] levels = {"Easy", "Normal", "Hard", "Extreme"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle("Select level");
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getBaseContext(), "Chosen level: " + levels[lvl], Toast.LENGTH_SHORT).show();
+                    }
+                });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getBaseContext(), "Resigned", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setSingleChoiceItems(levels, 0,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int item) {
+                        lvl = item;
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         Log.d(tag, "onStart()");
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         Log.d(tag, "onResume()");
     }
 
     @Override
-    public void onRestart(){
+    public void onRestart() {
         super.onRestart();
         Log.d(tag, "onRestart()");
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         Log.d(tag, "onPause()");
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         Log.d(tag, "onStop()");
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         Log.d(tag, "onDestroy()");
     }

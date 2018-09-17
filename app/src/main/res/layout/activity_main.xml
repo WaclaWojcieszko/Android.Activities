@@ -28,4 +28,12 @@
         android:onClick="dialogWindow3"
         android:text="@string/welcome" />
 
+    <Button
+        android:id="@+id/button4"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="dialogWindow4"
+        android:text="@string/level" />
+
 </LinearLayout>
